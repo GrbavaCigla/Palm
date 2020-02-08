@@ -1,7 +1,6 @@
 #include <ncurses.h>
 
 #include <iostream>
-#include <libvlcpp/vlcpp/vlc.hpp>
 #include <nlohmann/json.hpp>
 #include <vector>
 
@@ -31,8 +30,11 @@ int main() {
 
     endwin();
 
-    json request = get_json("1ai4efIWDYA");
+    json request = get_json("qQRQT0n3GDo");
     std::vector<YouTubeSource> sources = get_sources(request);
+    for (auto const& source : sources) {
+        std::cout << source.quality << std::endl;
+    }
 
     return 0;
 }

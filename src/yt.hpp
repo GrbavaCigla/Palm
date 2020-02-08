@@ -27,7 +27,7 @@ std::string url_decode(const std::string &url) {
     std::string ret;
     char ch;
     int i, ii;
-    for (i = 0; i < url.length(); i++) {
+    for (i = 0; i < (int)url.length(); i++) {
         if (int(url[i]) == 37) {
             sscanf(url.substr(i + 1, 2).c_str(), "%x", &ii);
             ch = static_cast<char>(ii);
@@ -47,7 +47,7 @@ static size_t write_callback(void *contents, size_t size, size_t nmemb, void *us
 
 std::string request_get(const std::string &url) {
     CURL *curl;
-    CURLcode res;
+
     std::string readBuffer;
 
     curl = curl_easy_init();
@@ -55,7 +55,7 @@ std::string request_get(const std::string &url) {
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-        res = curl_easy_perform(curl);
+        curl_easy_perform(curl);
         curl_easy_cleanup(curl);
     }
     return readBuffer;
@@ -80,6 +80,7 @@ std::vector<YouTubeSource> get_sources(const nlohmann::json &requested_json) {
         if (static_cast<std::string>((*it)["mimeType"]).substr(0, 5) == "audio") {
             YouTubeSource temp_source;
             temp_source.url = (*it)["url"];
+            temp_source.quality = (*it)["audioQuality"];
             result.push_back(temp_source);
         }
     }
