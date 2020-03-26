@@ -22,7 +22,7 @@ file(GLOB HEADER_FILES src/*.hpp)
 find_package(Curses REQUIRED)
 find_package(LibXml2 REQUIRED)
 find_package(CURL REQUIRED)
-include_directories(${CURSES_INCLUDE_DIR} ${LIBXML2_INCLUDE_DIR} ${CURL_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/lib/libvlcpp)
+include_directories(${CURSES_INCLUDE_DIR} ${LIBXML2_INCLUDE_DIR} ${CURL_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/lib/libvlcpp ${CMAKE_SOURCE_DIR}/lib/csv)
 
 add_executable(palm ${HEADER_FILES} ${SOURCE_FILES})
 add_subdirectory(lib/json)

@@ -1,9 +1,11 @@
+#include <csv.h>
 #include <ncurses.h>
 
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <vector>
 
+#include "vlcstream.hpp"
 #include "yt.hpp"
 
 using namespace nlohmann;
@@ -32,8 +34,9 @@ int main() {
 
     json request = get_json("qQRQT0n3GDo");
     std::vector<YouTubeSource> sources = get_sources(request);
+
     for (auto const& source : sources) {
-        std::cout << source.quality << std::endl;
+        stream_from_url(source.url);
     }
 
     return 0;

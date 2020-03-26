@@ -8,6 +8,8 @@
 struct YouTubeSource {
     std::string url;
     std::string quality;
+
+    int lenght_ms;
 };
 
 std::vector<std::string> split_by_delim(std::string string, const std::string &delimiter) {

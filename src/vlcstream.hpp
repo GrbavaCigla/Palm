@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <thread>
 #include <vlcpp/vlc.hpp>
 
 int stream_from_url(const std::string &url);
